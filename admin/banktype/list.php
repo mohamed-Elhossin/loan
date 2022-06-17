@@ -12,7 +12,7 @@ if (isset($_GET['delete'])) {
   $delete = "DELETE FROM banktype where id = $id";
   $d =  mysqli_query($conn, $delete);
   // header('LOCATION: /loan/admin/banktype/list.php');
-  testMessage($d, "Delete Trip $id ");
+  testMessage($d, "Delete Bank $id ");
 }
 ?>
 <main id="main" class="main">
