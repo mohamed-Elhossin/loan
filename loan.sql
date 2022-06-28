@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 08, 2022 at 09:56 AM
+-- Generation Time: Jun 28, 2022 at 10:41 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -41,8 +41,11 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `name`, `password`, `email`, `image`, `role`) VALUES
-(5, 'ahmed', '123', 'ahmed@gmail.com', '32', 0),
-(6, 'Mohamed El hosisny', '123', 'm.m.m.elhossin@gmail.com', '63346499.jfif', 0);
+(6, 'ahmed tarek', '123', 'ahmed@gmail.com', '63346499.jfif', 0),
+(7, 'romany', '123', 'romany@gmai.com', '9f11b405-c44a-405f-bfa4-393653b41925.jfif', 0),
+(8, 'beshoy', '1234', 'beshoy@gmail.com', 'repay.png', 0),
+(11, 'sara', '1234', 'sara@gmail.com', 'download (1).png', 0),
+(12, 'helana', '123', 'helana@gmail.com', 'download (1).png', 0);
 
 -- --------------------------------------------------------
 
@@ -54,6 +57,7 @@ CREATE TABLE `bank` (
   `id` int(11) NOT NULL,
   `name` varchar(200) NOT NULL,
   `ir` int(22) NOT NULL,
+  `years` int(11) NOT NULL,
   `location` varchar(111) NOT NULL,
   `image` varchar(111) NOT NULL,
   `adminId` int(11) NOT NULL,
@@ -64,9 +68,10 @@ CREATE TABLE `bank` (
 -- Dumping data for table `bank`
 --
 
-INSERT INTO `bank` (`id`, `name`, `ir`, `location`, `image`, `adminId`, `bankType`) VALUES
-(15, 'CIB', 10, 'Naser City', 'Screenshot 2022-06-02 at 6.27.52 PM.png', 5, 3),
-(16, 'NPE', 12, 'Cairo', 'Gull_portrait_ca_usa.jpg', 5, 3);
+INSERT INTO `bank` (`id`, `name`, `ir`, `years`, `location`, `image`, `adminId`, `bankType`) VALUES
+(19, 'egypt bank', 13, 2, 'elzamalk', 'unnamed.png', 6, 3),
+(21, 'QNB', 12, 1, 'Cairo', '1519856022944.jpg', 6, 3),
+(22, 'saib', 10, 7, 'Naser City', 'admin-panel.png', 7, 3);
 
 -- --------------------------------------------------------
 
@@ -85,11 +90,8 @@ CREATE TABLE `banktype` (
 
 INSERT INTO `banktype` (`id`, `title`) VALUES
 (3, 'تجاري'),
-(4, 'زراعي'),
 (5, 'اقتصادي'),
-(6, 'فوري'),
-(7, 'اقتصادي'),
-(8, 'اقتصادي');
+(10, 'الزراعي المصري');
 
 -- --------------------------------------------------------
 
@@ -114,7 +116,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `age`, `email`, `password`, `address`, `phone`, `userType`) VALUES
 (2, 'Mohamed El hosisny', 33, 'm.m.m.elhossin@gmail.com', '123', 'asfdsafd', '2213', 2),
-(3, 'ahmed tofiq', 33, 'm.m.m.elhossin@gmail.com', '1234', 'asdfdsfasfdsafdsafdsaf', '  0117433885', 2);
+(3, 'ahmed tofiq', 33, 'm.m.m.elhossin@gmail.com', '1234', 'asdfdsfasfdsafdsafdsaf', '  0117433885', 2),
+(4, 'ahmed tofiq', 33, 'm.m.m.elhossin@gmail.com', '1234', 'asfdsafd', '2213', 1);
 
 -- --------------------------------------------------------
 
@@ -133,7 +136,9 @@ CREATE TABLE `usertype` (
 
 INSERT INTO `usertype` (`id`, `title`) VALUES
 (1, 'قطاع خاص'),
-(2, 'قطاع عام');
+(2, 'قطاع عام'),
+(3, 'طالب'),
+(4, 'اعمال حره');
 
 --
 -- Indexes for dumped tables
@@ -180,31 +185,31 @@ ALTER TABLE `usertype`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `bank`
 --
 ALTER TABLE `bank`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `banktype`
 --
 ALTER TABLE `banktype`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `usertype`
 --
 ALTER TABLE `usertype`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables

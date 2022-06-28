@@ -33,20 +33,18 @@ if (isset($_GET['logout'])) {
             <h6><?php echo   $_SESSION['admin']; ?></h6>
 
           </li>
-          <li>
-            <hr class="dropdown-divider">
-          </li>
+      
 
           <li>
             <a class="dropdown-item d-flex align-items-center" href="/loan/admin/users-profile.php">
-              <i class="bi bi-person"></i>
+          
               <span>My Profile</span>
             </a>
           </li>
           <li>
             <form action="">
               <button class="dropdown-item d-flex align-items-center" name="logout">
-                <i class="bi bi-box-arrow-right"></i>
+
                 <span>Sign Out</span>
               </button>
             </form>

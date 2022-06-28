@@ -10,7 +10,7 @@ $totalPayment = "";
 $payemntByMonth = "";
 if (isset($_GET['booking'])) {
     $bankId = $_GET['booking'];
-    $userId =  $_SESSION['adminId'];
+    $userId = $_SESSION['adminId'];
     $select = "SELECT * FROM `bank` where id =$bankId ";
     $s = mysqli_query($conn, $select);
     $row = mysqli_fetch_assoc($s);
@@ -20,11 +20,10 @@ if (isset($_GET['booking'])) {
         $years = $_POST['years'];
         $irByYear = $loan * ($ir / 100);
         $totalIRofallYears = $irByYear * $years;
-        $totalPayment = $totalIRofallYears  + $loan;
+        $totalPayment = $totalIRofallYears + $loan;
         $payemntByMonth = $totalPayment / ($years * 12);
     }
 }
-
 
 ?>
 <main id="main" class="main  my-5 pt-5">
@@ -49,11 +48,8 @@ if (isset($_GET['booking'])) {
                             </div>
                             <div class="form-group">
                                 <label> Number Of years </label>
-                                <select name="years" class="form-control">
-                                    <?php for ($i = 1; $i <= 20; $i++) { ?>
-                                        <option value="<?php echo $i ?>"><?php echo $i ?></option>
-                                    <?php } ?>
-                                </select>
+                                <input name="years" readonly value="<?php echo $row['years'] ?>" class="form-control">
+
                             </div>
                             <button name="pay" class="btn mt-3 btn-info btn-block w-50 mx-auto"> Calc Now </button>
                         </form>
@@ -67,7 +63,7 @@ if (isset($_GET['booking'])) {
                         <div class="card ">
                             <div class="card-body">
                                 <h3 class=" text-info"> Interest payment / year </h3>
-                                <h3> <?php echo   $irByYear ?>$ </h3>
+                                <h3> <?php echo $irByYear ?>$ </h3>
                             </div>
                         </div>
                     </div>
@@ -75,7 +71,7 @@ if (isset($_GET['booking'])) {
                         <div class="card ">
                             <div class="card-body">
                                 <h3 class=" text-info"> Total Interest payment </h3>
-                                <h3> <?php echo  $totalIRofallYears  ?>$ </h3>
+                                <h3> <?php echo $totalIRofallYears ?>$ </h3>
                             </div>
                         </div>
                     </div>
@@ -83,7 +79,7 @@ if (isset($_GET['booking'])) {
                         <div class="card ">
                             <div class="card-body">
                                 <h3 class=" text-info"> Total payment </h3>
-                                <h3> <?php echo $totalPayment    ?>$ </h3>
+                                <h3> <?php echo $totalPayment ?>$ </h3>
                             </div>
                         </div>
                     </div>
@@ -91,7 +87,7 @@ if (isset($_GET['booking'])) {
                         <div class="card ">
                             <div class="card-body">
                                 <h3 class=" text-info"> Total payment/month </h3>
-                                <h3> <?php echo $payemntByMonth    ?>$ </h3>
+                                <h3> <?php echo $payemntByMonth ?>$ </h3>
                             </div>
                         </div>
                     </div>

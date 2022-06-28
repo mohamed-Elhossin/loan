@@ -28,6 +28,9 @@ $s = mysqli_query($conn, $select);
                             <p>
                                 Location: <?php echo $data['location'] ?>
                             </p>
+                            <p>
+                                Number of Years: <?php echo $data['years'] ?>
+                            </p>
                             <?php if (isset($_SESSION['admin'])) : ?>
                                 <a href="/loan/user/payment.php?booking=<?php echo $data['id'] ?>" class="btn ">interest calculation</a>
                             <?php else : ?>

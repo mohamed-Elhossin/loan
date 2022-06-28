@@ -85,24 +85,24 @@ if ($_SESSION['role'] == 0) {
                             <form method="POST" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label> Admin Name</label>
-                                    <input name="name" value="<?php echo $name ?>" type="text" class="form-control">
+                                    <input name="name" value="<?php echo $name ?>" type="text" required class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label> Admin Email </label>
-                                    <input name="email" value="<?php echo $email ?>" type="email" class="form-control">
+                                    <input name="email" value="<?php echo $email ?>" type="email" required class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label> Admin password</label>
-                                    <input name="password" value="<?php echo $password ?>" type="password" class="form-control">
+                                    <input name="password" value="<?php echo $password ?>" type="password" required class="form-control">
                                 </div>
                                 <?php if (!$update) :  ?>
                                     <div class="form-group">
                                         <label> Image prfile :<?php echo $image ?></label>
-                                        <input name="image" type="file" class="form-control">
+                                        <input name="image" type="file" required class="form-control">
                                     </div>
                                 <?php endif; ?>
                                 <div class="form-group mt-3">
-                                    <select name="role" class="form-control" id="">
+                                    <select name="role" required class="form-control" id="">
                                         <option value="0">All Access </option>
                                         <option value="1">Sime Access </option>
                                     </select>

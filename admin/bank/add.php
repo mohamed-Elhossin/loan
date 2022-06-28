@@ -13,6 +13,7 @@ if (isset($_POST['send'])) {
     $locationn = $_POST['location'];
     $banktype = $_POST['banktype'];
     $adminId = $_SESSION['adminId'];
+    $years = $_POST['years'];
     // Image Code
     $image_name = $_FILES['image']['name'];
     $image_tmp = $_FILES['image']['tmp_name'];
@@ -22,8 +23,8 @@ if (isset($_POST['send'])) {
     } else {
         echo "image Uploaded false";
     }
-    $insert = "INSERT INTO `bank` VALUES (NULL , '$name',  $ir , '$locationn', '$image_name' , $adminId,$banktype )";
-    $i =  mysqli_query($conn, $insert);
+    $insert = "INSERT INTO `bank` VALUES (NULL , '$name',  $ir,$years , '$locationn', '$image_name' , $adminId,$banktype )";
+    $i = mysqli_query($conn, $insert);
     testMessage($i, "Insert To Bank");
 }
 
@@ -31,10 +32,11 @@ $name = '';
 $locationn = '';
 $ir = "";
 $image = "";
+$years = "";
 $update = false;
 if (isset($_GET['edit'])) {
     $update = true;
-    $id =   $_GET['edit'];
+    $id = $_GET['edit'];
     $select = "SELECT * from `bank` where id = $id";
     $ss = mysqli_query($conn, $select);
     $row = mysqli_fetch_assoc($ss);
@@ -42,39 +44,41 @@ if (isset($_GET['edit'])) {
     $locationn = $row['location'];
     $ir = $row['ir'];
     $image = $row['image'];
+    $years = $row['years'];
+
     $role = $row['role'];
     if (isset($_POST['update'])) {
         $name = $_POST['name'];
         $locationn = $_POST['location'];
         $ir = $_POST['ir'];
-
+        $years = $_POST['years'];
         // Image Code
         $image_name = $image;
 
-        $update = "UPDATE `bank` SET `name` = '$name' ,  `location` = '$locationn' ,  `ir` = '$ir' ,`image`='$image_name' where id = $id";
+        $update = "UPDATE `bank` SET `name` = '$name' ,  `location` = '$locationn' ,  `ir` = '$ir' ,`years`= $years ,`image`='$image_name' where id = $id";
         $u = mysqli_query($conn, $update);
         testMessage($u, "Updated Bank");
-        // header('LOCATION: http://localhost/loan/admin/travelAgenecy/list.php');
+        path("bank/list.php");
     }
 }
 if ($_SESSION['role'] == 0) {
 
-?>
+    ?>
     <main id="main" class="main">
         <div class="pagetitle">
             <h1 class="display-1 text-center text-info">Bank Add page </h1>
             <nav>
-                <?php if ($update) : ?>
+                <?php if ($update): ?>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                         <li class="breadcrumb-item active">Update admin </li>
                     </ol>
-                <?php else : ?>
+                <?php else: ?>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                         <li class="breadcrumb-item active">add admin </li>
                     </ol>
-                <?php endif; ?>
+                <?php endif;?>
             </nav>
         </div><!-- End Page Title -->
 
@@ -86,36 +90,40 @@ if ($_SESSION['role'] == 0) {
                             <form method="POST" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label> Bank Name</label>
-                                    <input name="name" value="<?php echo $name ?>" type="text" class="form-control">
+                                    <input name="name" value="<?php echo $name ?>" type="text" required class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label> Bank location</label>
-                                    <input name="location" value="<?php echo $locationn ?>" type="text" class="form-control">
+                                    <input name="location" value="<?php echo $locationn ?>" type="text" required class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label> Bank Intresst Rate</label>
-                                    <input name="ir" value="<?php echo $ir ?>" type="number" class="form-control">
+                                    <input name="ir" value="<?php echo $ir ?>" type="number" required class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label>Number of Years</label>
+                                    <input name="years" value="<?php echo $years ?>" type="number" required class="form-control">
                                 </div>
                                 <div class="form-group my-3">
-                                    <select name="banktype" class="form-control" id="">
-                                        <?php foreach ($banksType as $data) { ?>
+                                    <select name="banktype" required class="form-control" id="">
+                                        <?php foreach ($banksType as $data) {?>
                                             <option value="<?php echo $data['id'] ?>"><?php echo $data['title'] ?></option>
-                                        <?php } ?>
+                                        <?php }?>
                                     </select>
                                 </div>
-                                <?php if (!$update) :  ?>
+                                <?php if (!$update): ?>
                                     <div class="form-group">
                                         <label> Image prfile :<?php echo $image ?></label>
-                                        <input name="image" type="file" class="form-control">
+                                        <input name="image" type="file" required class="form-control">
                                     </div>
-                                <?php endif; ?>
+                                <?php endif;?>
 
-                                <?php if ($update) : ?>
+                                <?php if ($update): ?>
                                     <button name="update" class="btn btn-primary btn-block w-50 mx-auto"> Update Data </button>
 
-                                <?php else : ?>
+                                <?php else: ?>
                                     <button name="send" class="btn btn-info btn-block w-50 mx-auto"> Send Data </button>
-                                <?php endif; ?>
+                                <?php endif;?>
                             </form>
                         </div>
                     </div>
@@ -125,7 +133,7 @@ if ($_SESSION['role'] == 0) {
 
     </main><!-- End #main -->
 <?php
-    include '../shared/footer.php';
+include '../shared/footer.php';
     include '../shared/script.php';
 } else {
     echo "<script>

@@ -8,10 +8,10 @@ include '../sharedFunc/func.php';
 $select = "SELECT * FROM `bank`";
 $s = mysqli_query($conn, $select);
 if (isset($_GET['delete'])) {
-  $id =   $_GET['delete'];
-  $delete = "DELETE FROM bank where id = $id";
-  $d =  mysqli_query($conn, $delete);
-  header('LOCATION: /loan/admin/bank/list.php');
+    $id = $_GET['delete'];
+    $delete = "DELETE FROM bank where id = $id";
+    $d = mysqli_query($conn, $delete);
+    path("bank/list.php");
 }
 ?>
 <main id="main" class="main">
@@ -34,20 +34,22 @@ if (isset($_GET['delete'])) {
                 <th>ID</th>
                 <th>Name</th>
                 <th>Interst Rate</th>
+                <th>Years</th>
                 <th>Location</th>
-            
+
                 <th colspan="2">Action</th>
               </tr>
-              <?php foreach ($s as $data) { ?>
+              <?php foreach ($s as $data) {?>
                 <tr>
                   <th> <?php echo $data['id'] ?> </th>
                   <th> <?php echo $data['name'] ?> </th>
                   <th> <?php echo $data['ir'] ?> </th>
+                  <th><?php echo $data['years'] ?></th>
                   <th> <?php echo $data['location'] ?> </th>
                   <th> <a class="btn btn-warning" href="/loan/admin/bank/add.php?edit=<?php echo $data['id'] ?>">Edit </a> </th>
                   <th> <a class="btn btn-danger" onclick="return confirm('are your Sure !')" href="/loan/admin/bank/list.php?delete=<?php echo $data['id'] ?>">delete </a> </th>
                 </tr>
-              <?php } ?>
+              <?php }?>
             </table>
           </div>
         </div>
